@@ -19,7 +19,7 @@ This project provisions a highly available, load-balanced Apache web server infr
 
 - AWS account with proper IAM permissions
 - Terraform installed (`terraform -version`)
-- Existing VPC and subnets (used in `terraform.tfvars`)
+- Existing VPC, subnets and AMI (used in `terraform.tfvars`)
 - Existing EC2 Key Pair (e.g., `task-key`)
 
 ---
@@ -60,4 +60,17 @@ After applying, Terraform will output:
 
 Verify Setup
 
-curl http://<load_balancer_dns>
+`curl http://<load_balancer_dns>`
+
+## High Availability Test
+
+- Stop one EC2 instance from AWS Console.
+- Load balancer continues routing to the healthy instance.
+
+## Destroy Infrastructure
+`terraform destroy`
+
+##  Notes
+
+- Apache installed via `user_data`
+- ALB performs health checks and routes only to healthy instances.
