@@ -24,7 +24,7 @@ resource "aws_security_group" "task_sg" {
 
 resource "aws_instance" "web" {
   count                       = 2
-  ami                         = "ami-0f091043d3a597335" 
+  ami                         = var.ami_id
   instance_type               = "t3.micro"
   key_name                    = var.key_name
   subnet_id                   = var.subnet_ids[count.index]
